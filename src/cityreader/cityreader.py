@@ -1,5 +1,5 @@
 import csv
-
+import sys
 # Create a class to hold a city location. Call the class "City". It should have
 # fields for name, lat and lon (representing latitude and longitude).
 
@@ -76,14 +76,45 @@ for c in cities:
 # Salt Lake City: (40.7774,-111.9301)
 
 # TODO Get latitude and longitude values from the user
+# uinput = input("Enter lat1 lon1 lat2 lon2>> ")
+# print(sys.argv)
 
 
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
     # within will hold the cities that fall within the specified region
     within = []
 
-    # TODO Ensure that the lat and lon valuse are all floats
+    # TODO Ensure that the lat and lon values are all floats
+
+    try:
+        lat1 = float(lat1)
+        lat2 = float(lat2)
+        lon1 = float(lon1)
+        lon2 = float(lon2)
+    except:
+        within.append('Invalid Points')
+
+    if lat1 > lat2:
+        hilat = lat1
+        lolat = lat2
+    else:
+        hilat = lat2
+        lolat = lat1
+    if lon1 > lon2:
+        hilon = lon1
+        lolon = lon2
+    else:
+        hilon = lon2
+        lolon = lon1
     # Go through each city and check to see if it falls within
     # the specified coordinates.
+    for city in cities:
+        if city.lat > lolat and city.lat < hilat and city.lon > lolon and city.lon < hilon:
+            within.append(city)
 
     return within
+
+# Use to run from the command line
+# res = cityreader_stretch(*sys.argv[1:], cities)
+# for c in res:
+#     print(c)
