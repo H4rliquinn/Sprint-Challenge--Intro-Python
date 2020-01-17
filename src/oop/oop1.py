@@ -18,30 +18,33 @@
 #
 # Put a comment noting which class is the base class
 
+# Vehicle is the base class for all objects
+
 
 class Vehicle:
+    """Base class for vehicles"""
     pass
 
 
-class FlightVehicle:
+class FlightVehicle(Vehicle):
     pass
 
 
-class Starship:
+class Starship(FlightVehicle):
     pass
 
 
-class GroundVehicle:
+class GroundVehicle(Vehicle):
     pass
 
 
-class Airplane:
+class Airplane(FlightVehicle):
     pass
 
 
-class Car:
+class Car(GroundVehicle):
     pass
 
 
-class Motorcycle:
+class Motorcycle(GroundVehicle):
     pass
